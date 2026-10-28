@@ -7,6 +7,6 @@ function setup(){
 
         setTimeout(()=>{
             shiftPage("#page2")
-        },8000)
+        },5000)
 }
 
