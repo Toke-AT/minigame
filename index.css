@@ -19,6 +19,27 @@ body,
     display: grid;
     place-items: center;
     position: fixed;
-    left: 0;
+      left: -100vw;
+    transition: left 0.5s ease-in-out;
+}
+
+.show{
+    left:0;
+}
+
+#page1{
+    background-image: url('./asset/Midnight_dino_deer.png');
+    background-size: contain;
+    background-size: 100%, 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+
+}
+
+
+#page2{
+    background-color: aquamarine;
+
 }
 
