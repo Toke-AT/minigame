@@ -40,6 +40,17 @@ body,
 
 #page2{
     background-color: aquamarine;
-
+    grid-template-columns: repeat(3, 1fr);
 }
 
+#page3{
+    background-color: black;
+}
+
+#page4{
+    background-color: black;
+}
+
+#page5{
+    background-color: black;
+}

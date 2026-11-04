@@ -8,5 +8,14 @@ function setup(){
         setTimeout(()=>{
             shiftPage("#page2")
         },5000)
+        select("#dinoBtn").mousePressed(()=>{
+        shiftPage("#page3")
+    })
+    select("#deerBtn").mousePressed(()=>{
+        shiftPage("#page4")
+    })
+    select("#midnightBtn").mousePressed(()=>{
+        shiftPage("#page5")
+    })
 }
 
