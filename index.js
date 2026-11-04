@@ -18,6 +18,7 @@ function setup(){
         setTimeout(()=>{
             shiftPage("#page2")
         },5000)
+
         select("#dinoBtn").mousePressed(()=>startGame('dino'))
    
 
