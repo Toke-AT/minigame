@@ -45,19 +45,21 @@ body,
     background-repeat: no-repeat;
     background-position: center;
     grid-template-columns: repeat(3, 1fr);
-
 }
 
 #dinoBtn{
     background-color:aliceblue;
+    box-shadow: 5px 5px 5px 3px rgba(138, 43, 226, 1);
 }
 
 #deerBtn{
     background-color:aliceblue;
+    box-shadow: 5px 5px 5px 3px rgba(138, 43, 226, 1);
 }
 
 #midnightBtn{
     background-color:aliceblue;
+    box-shadow: 5px 5px 5px 3px rgba(138, 43, 226, 1);
 }
 
 #page3{
