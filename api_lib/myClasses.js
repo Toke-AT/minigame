@@ -15,6 +15,9 @@ class Ball {
     this.mass = this.diam
     this.fixed = false
   }
+
+
+
   update(){
     this.position.add(this.velocity)
   }
@@ -95,6 +98,7 @@ class Ball {
     other.didBounce = true
   }
 }
+
 
 class JumpingBall extends Ball{
   constructor(x, y, r, img, jump, col, bounds){
@@ -280,3 +284,5 @@ class Firebase {
     })
   }
 }
+
+
