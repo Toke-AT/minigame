@@ -22,6 +22,7 @@ body, * {
 
 #toast.toastShow{
     top:2rem;
+    z-index:100;
 }
 
 #toast.toastShow.notify{
