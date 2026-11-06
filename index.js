@@ -48,18 +48,23 @@ function startGame(kind) {
      console.log("vil gerne skifte til 3")
      shiftPage("#page3")
      startTimer(20,0,'top-right',0, null,)
-        if(20 ==0){
-            shiftPage("#page2")
-        }
+       
        
     
     }
     
     if (kind == 'deer game') {
         shiftPage("#page4")
+        startTimer(20,0,'top-right',0, null,)
     }
     if (kind == 'midnight game') {
        shiftPage("#page5")
+       startTimer(20,0,'top-right',0, null,)
     }
 }
+
+
+//function stopGame(){
+
+//}
 

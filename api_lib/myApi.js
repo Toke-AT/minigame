@@ -113,11 +113,15 @@ function startTimer(from, to, corner = 'top-right', callback, bg) {
         if (now === to) {
             clearInterval(tick)
             //callback(now)
+            shiftPage("#page2")
         }
     }, 1000)
 
     return timer
 }
+
+
+
 
 //id: CSS-selektor til et input, fx '#ball-x'
 //Returnerer feltets værdi som tal
