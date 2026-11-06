@@ -112,7 +112,7 @@ function startTimer(from, to, corner = 'top-right', callback, bg) {
         // Er vi i mål?
         if (now === to) {
             clearInterval(tick)
-            callback(now)
+            //callback(now)
         }
     }, 1000)
 

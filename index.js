@@ -47,6 +47,12 @@ function startGame(kind) {
     if (kind == 'dino') {
      console.log("vil gerne skifte til 3")
      shiftPage("#page3")
+     startTimer(20,0,'top-right',0, null,)
+        if(20 ==0){
+            shiftPage("#page2")
+        }
+       
+    
     }
     
     if (kind == 'deer game') {
