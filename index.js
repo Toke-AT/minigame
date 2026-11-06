@@ -17,7 +17,7 @@ function setup(){
 
         setTimeout(()=>{
             shiftPage("#page2")
-        },5000)
+        },1000)
 
         select("#dinoBtn").mousePressed(()=>startGame('dino'))
    
@@ -36,7 +36,6 @@ function startGame(kind) {
     if (settings.name == '') {
         showToast('Skriv et navn', 1800, 'warning')
         //shiftPage('#indstillinger')
-        return
     }
      //var t = tuning()
     game = kind
@@ -46,13 +45,15 @@ function startGame(kind) {
     resizeCanvas(windowWidth, windowHeight)
 
     if (kind == 'dino') {
+     console.log("vil gerne skifte til 3")
      shiftPage("#page3")
     }
+    
     if (kind == 'deer game') {
-        
+        shiftPage("#page4")
     }
     if (kind == 'midnight game') {
-       
+       shiftPage("#page5")
     }
 }
 
