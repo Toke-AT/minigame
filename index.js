@@ -12,22 +12,17 @@ var settings = {
 
 //P5 setup() bliver kaldt EN gang før siden vises 
 //jsbdjabkf
-function setup(){
-     var canvas = createCanvas(400, 400)
+function setup() {
+    var canvas = createCanvas(400, 400)
 
-        setTimeout(()=>{
-            shiftPage("#page2")
-        },1000)
+    setTimeout(() => {
+        shiftPage("#page2")
+    }, 1000)
 
-        select("#dinoBtn").mousePressed(()=>startGame('dino'))
-   
+    select("#dinoBtn").mousePressed(() => startGame('dino'))
+    select("#deerBtn").mousePressed(() => startGame('deer game'))
+    select("#midnightBtn").mousePressed(() => startGame('midnight game'))
 
-    
-    select("#deerBtn").mousePressed(()=>startGame('deer game'))
-        
-   
-    select("#midnightBtn").mousePressed(()=>startGame('midnight game'))
-  
 }
 
 
@@ -37,7 +32,7 @@ function startGame(kind) {
         showToast('Skriv et navn', 1800, 'warning')
         //shiftPage('#indstillinger')
     }
-     //var t = tuning()
+    //var t = tuning()
     game = kind
     score = 0
     //gravity = createVector(0, t.g)
@@ -45,15 +40,31 @@ function startGame(kind) {
     resizeCanvas(windowWidth, windowHeight)
 
     if (kind == 'dino') {
-     console.log("vil gerne skifte til 3")
-     shiftPage("#page3")
+        console.log("vil gerne skifte til 3")
+        shiftPage("#page3")
+        var t = startTimer(20, 0, 'top-right', () => {
+            shiftPage("#page6")
+        }, null)
     }
-    
+
     if (kind == 'deer game') {
         shiftPage("#page4")
+        var t = startTimer(20, 0, 'top-right', () => {
+            shiftPage("#page6")
+        }, null)
     }
+    //clearInterval(t)
+
     if (kind == 'midnight game') {
-       shiftPage("#page5")
+        shiftPage("#page5")
+        var t = startTimer(20, 0, 'top-right', () => {
+            shiftPage("#page6")
+        }, null)
     }
 }
+
+
+//function stopGame(){
+
+//}
 

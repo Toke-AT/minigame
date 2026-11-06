@@ -11,6 +11,7 @@ body,
 
 }
 
+
 .page {
     width: 100vw;
     height: 100vh;
@@ -72,4 +73,7 @@ body,
 
 #page5{
     background-color: black;
+}
+#page6{
+    background-color: red;
 }
