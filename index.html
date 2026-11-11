@@ -13,10 +13,9 @@
     <script src="api_lib/myClasses.js"></script>
     <script src="api_lib/myApi.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.min.js"></script>
-
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
-    <script src="./firebase.js"></script>
+    <script src="api_lib/firebase.js"></script>
 </head>
 
 <body>
@@ -52,9 +51,13 @@
 
         <div class="page" id="page6" title="end game screen">
             <h1>END SCREEN</h1>
-            <div id="Mini-scores">
+            <div id="MiniScores">
                     <h2>Mini-scores!</h2>
                     <ol id="score-list"></ol>
+                </div>
+                <div id="save-score">
+                    <input type="text" id="player-name" placeholder="Dit navn">
+                    <button id="btn-save">Gem high score</button>
                 </div>
         </div>
 
