@@ -16,12 +16,17 @@ var scoresRef = db.collection('Mini-scores')
 //P5 setup() bliver kaldt EN gang før siden vises 
 //jsbdjabkf
 function setup(){
-    loadHighScores()
+     alert("Setup bliver kørt")
+    // loadHighScores()
     var canvas = createCanvas(400, 400)
+   
 
-    setTimeout(() => {
+   
+       
+     setTimeout(() => {
         shiftPage("#page2")
     }, 1000)
+   
 
     select("#dinoBtn").mousePressed(() => startGame('dino'))
     select("#deerBtn").mousePressed(() => startGame('deer game'))
