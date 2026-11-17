@@ -9,6 +9,11 @@ var settings = {
     coins: 0,
     owned: ['#ff6347']
 }
+var biler = []
+var baneY
+
+
+
 
 // Firestore reference
 var scoresRef = db.collection('MiniScores')
@@ -36,11 +41,7 @@ function stopCountPoints() {
 function setup(){
      alert("Setup bliver kørt")
     // loadHighScores()
-    var canvas = createCanvas(400, 400)
-   
-
-   
-       
+    var canvas = createCanvas(400, 400)     
      setTimeout(() => {
         shiftPage("#page2")
     }, 1000)
@@ -86,6 +87,9 @@ function startGame(kind) {
             stopCountPoints()
             shiftPage("#page6")
         }, null)
+    
+         
+        
     }
     //clearInterval(t)
 
@@ -98,6 +102,18 @@ function startGame(kind) {
         }, null)
     }
 }
+
+function draw() {
+    console.log("draw kører");
+  //  if (currentPage != '#spil' || !player) return
+   // background(back[game])
+    if (game == 'deer game') {
+        runDeer();     
+    }
+   // if (game == 'skyd') runSkyd()
+   // if (game == 'traek') runTraek()
+}
+
 
 
 // ============================================
@@ -181,3 +197,26 @@ function resetGames(){
 //function stopGame(){
 
 //}
+
+function runDeer(){
+      console.log("runDeer kører");
+    baneY = height/2
+   
+   if (frameCount % 90 == 0) {
+  biler.push(new Ball(0, baneY, 80, '#8b5e3c', null, 4, 0))
+ 
+}
+    biler.map(bil =>{
+        bil.update()
+        bil.show()
+    })
+    
+
+
+}
+
+
+function keyPressed() {
+    if (currentPage == '#spil' && game == 'deer game' && key == ' ') 
+    if (key == ' ' || keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW || keyCode == UP_ARROW || keyCode == DOWN_ARROW) return false
+}

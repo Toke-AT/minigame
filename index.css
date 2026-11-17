@@ -73,7 +73,9 @@ body,
 
 #page5{
     background-color: black;
+    z-index: 100;
 }
+
 #page6{
     background-color: red;
 }

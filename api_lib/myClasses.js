@@ -99,6 +99,19 @@ class Ball {
   }
 }
 
+class Deer extends Ball{
+  constructor(x, y, r, img, col){
+    super(x,y,r, img, col, 0,0,)
+    
+  }
+  Step(dx, dy){
+    this.position.x +=dx
+
+    this.position.y +=dy
+    
+  }
+}
+
 
 class JumpingBall extends Ball{
   constructor(x, y, r, img, jump, col, bounds){
