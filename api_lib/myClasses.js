@@ -113,7 +113,9 @@ class Deer extends Ball{
 }
 
 class Hit {
-
+ constructor(){
+  this.wasHit = false
+ }
 }
 
 
