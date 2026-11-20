@@ -75,10 +75,14 @@ function startGame(kind) {
 
     if (kind == 'dino') {
         console.log("vil gerne skifte til 3")
+        gravity = createVector(0, 0.5)
+        player = new JumpingBall(120, height - 80, 70, null, 16, '#535353')
+        cactus = []
+        select("#page3").child(canvas)
         shiftPage("#page3")
-        startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
             stopCountPoints()
+            player = null
             shiftPage("#page6")
         }, null)
     }
@@ -134,6 +138,15 @@ function draw() {
         }
         
     
+    }
+
+    if (game == 'dino' && player) {
+        background(240)
+        player.update()
+        player.constrain()
+        var onGround=player.position.y>=height-player.diam/2
+        if(onGround) player.velocity.y=0
+        player.show()
     }
    // if (game == 'skyd') runSkyd()
    // if (game == 'traek') runTraek()
@@ -247,3 +260,10 @@ function runDeer(){
    // if (key == ' ' || keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW || keyCode == UP_ARROW || keyCode == DOWN_ARROW) return false
 
 //}
+
+function keyPressed() {
+    if (currentPage == '#spil' && game == 'dino' && key == ' ') {
+        var onGround = player.position.y >= height - player.diam / 2
+        if(onGround) player.jump()  
+    }
+}
