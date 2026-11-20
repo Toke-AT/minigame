@@ -69,11 +69,12 @@ body,
 
 #page4{
     background-color: black;
+    
 }
 
 #page5{
     background-color: black;
-    z-index: 100;
+    
 }
 
 #page6{
@@ -88,3 +89,4 @@ body,
     padding: 0.3rem 0;
     border-bottom: 1px solid rgba(255,255,255,0.15);
 }
+

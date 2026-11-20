@@ -1,5 +1,6 @@
 
 var game
+var canvas
 
 var settings = {
     name: '',
@@ -11,6 +12,7 @@ var settings = {
 }
 var biler = []
 var baneY
+var player
 
 
 
@@ -39,9 +41,9 @@ function stopCountPoints() {
 //P5 setup() bliver kaldt EN gang før siden vises 
 //jsbdjabkf
 function setup(){
-     alert("Setup bliver kørt")
+    alert("Setup bliver kørt")
     // loadHighScores()
-    var canvas = createCanvas(400, 400)     
+    canvas = createCanvas(400, 400)     
      setTimeout(() => {
         shiftPage("#page2")
     }, 1000)
@@ -81,7 +83,9 @@ function startGame(kind) {
     }
 
     if (kind == 'deer game') {
+
         shiftPage("#page4")
+        player = new Deer(width / 2, height - 40,70, null,'#ff6347')
         startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
             stopCountPoints()
@@ -107,8 +111,12 @@ function draw() {
     console.log("draw kører");
   //  if (currentPage != '#spil' || !player) return
    // background(back[game])
-    if (game == 'deer game') {
-        runDeer();     
+    console.log("Game:", game);
+    console.log("Player:", player);
+
+    if (game == 'deer game' && player) {
+        runDeer();    
+        player.show(); 
     }
    // if (game == 'skyd') runSkyd()
    // if (game == 'traek') runTraek()
