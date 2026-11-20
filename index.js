@@ -40,6 +40,7 @@ function stopCountPoints() {
 
 //P5 setup() bliver kaldt EN gang før siden vises 
 //jsbdjabkf
+var canvas
 function setup(){
     alert("Setup bliver kørt")
     // loadHighScores()
@@ -83,7 +84,7 @@ function startGame(kind) {
     }
 
     if (kind == 'deer game') {
-
+        select("#page4").child(canvas)
         shiftPage("#page4")
         player = new Deer(width / 2, height - 40,70, null,'#ff6347')
         startCountPoints()
@@ -111,12 +112,28 @@ function draw() {
     console.log("draw kører");
   //  if (currentPage != '#spil' || !player) return
    // background(back[game])
+   clear()
     console.log("Game:", game);
     console.log("Player:", player);
 
     if (game == 'deer game' && player) {
         runDeer();    
         player.show(); 
+
+        if(keyIsDown(LEFT_ARROW)){
+             player.Step(-5, 0.0)
+        }
+        if(keyIsDown(RIGHT_ARROW)){
+             player.Step(5, 0.0)
+        }
+        if(keyIsDown(UP_ARROW)){
+             player.Step(0.0, -5)
+        }
+        if(keyIsDown(DOWN_ARROW)){
+             player.Step(0.0, 5)
+        }
+        
+    
     }
    // if (game == 'skyd') runSkyd()
    // if (game == 'traek') runTraek()
@@ -218,13 +235,15 @@ function runDeer(){
         bil.update()
         bil.show()
     })
+
     
 
 
 }
 
 
-function keyPressed() {
-    if (currentPage == '#spil' && game == 'deer game' && key == ' ') 
-    if (key == ' ' || keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW || keyCode == UP_ARROW || keyCode == DOWN_ARROW) return false
-}
+//function keyPressed() {
+  //  if (currentPage == '#spil' && game == 'deer game' && key == ' ') 
+   // if (key == ' ' || keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW || keyCode == UP_ARROW || keyCode == DOWN_ARROW) return false
+
+//}
