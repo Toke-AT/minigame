@@ -66,6 +66,7 @@ classDiagram
         +reset()
     }
 
+    <!--
     class Hit {
         +wasHit
     }
@@ -77,4 +78,5 @@ classDiagram
         +remove(id)
         +clear()
     }
+    -->
 ```
