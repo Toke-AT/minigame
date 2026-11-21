@@ -1,4 +1,4 @@
-´´´mermaid
+```mermaid
 classDiagram
     Ball <|-- MovingBall
     MovingBall <|-- ShootingBall
@@ -25,4 +25,4 @@ classDiagram
     class Deer {
         +step()
     }
-    ´´´
+```
