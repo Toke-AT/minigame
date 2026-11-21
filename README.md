@@ -66,17 +66,4 @@ classDiagram
         +reset()
     }
 
-    <!---
-    class Hit {
-        +wasHit
-    }
-
-    class Firebase {
-        +ref
-        +save(name, points)
-        +listen(onUpdate, limit, sort, dir)
-        +remove(id)
-        +clear()
-    }
-    -->
 ```
