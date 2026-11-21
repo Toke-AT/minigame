@@ -66,7 +66,7 @@ classDiagram
         +reset()
     }
 
-    <!--
+    <!---
     class Hit {
         +wasHit
     }
