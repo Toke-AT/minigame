@@ -1,48 +1,80 @@
 ```mermaid
 classDiagram
-    Ball <|-- MovingBall
-    MovingBall <|-- ShootingBall
-    Ball <|-- Deer
+    Ball <|-- MovingBall
+    MovingBall <|-- ShootingBall
+    Ball <|-- Deer
     Ball <|-- JumpingBall
     Ball <|-- SpringBall
+    Ball <|-- Bullet
+    ShootingBall "1" --> "*" Bullet : bullets
 
-    class Ball {
-        +position
-        +diam
-        +velocity
-        +constructor(…)
-        +update()
-    }
-
-    class MovingBall {
-        +speed
-        +left()
-    }
-
-    class ShootingBall {
-        +bulletSpeed
-        -bullets
-        +shoot()
+    class Ball {
+        +position
+        +velocity
+        +diam
+        +img
+        +col
+        +bounds
+        +mass
+        +fixed
+        +constructor(x, y, r, img, col, xSpeed, ySpeed, bounds)
         +update()
         +show()
-    }
+        +constrain()
+        +hit(anotherBall)
+        +bounce(other)
+    }
 
-    class Deer {
-        +step()
-    }
+    class MovingBall {
+        +speed
+        +heading
+        +left()
+        +right()
+        +up()
+        +down()
+        +forward()
+        +back()
+    }
 
-    class JumpingBall{
-        +jump
-        +update()
+    class ShootingBall {
+        +bulletSpeed
+        -bullets
+        +shoot()
+    }
+
+    class Bullet {
+        +isGone()
+    }
+
+    class Deer {
+        +Step(dx, dy)
+    }
+
+    class JumpingBall {
+        +jumpForce
         +jump()
     }
 
-    class SpringBall{
+    class SpringBall {
+        +start
         +maxDragDist
+        +isFlying
+        +isDragging
+        +hasHit
         +drag()
         +launch()
         +reset()
-        +update()
-        +show()
+    }
+
+    class Hit {
+        +wasHit
+    }
+
+    class Firebase {
+        +ref
+        +save(name, points)
+        +listen(onUpdate, limit, sort, dir)
+        +remove(id)
+        +clear()
     }
 ```
