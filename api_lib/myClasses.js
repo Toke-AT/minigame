@@ -116,6 +116,27 @@ class Hit {
  constructor(){
   this.wasHit = false
  }
+  check(player, balls){
+    var collision = false
+
+    for(var ball of balls){
+      if(player.hit(ball)){
+        collision = true
+      }
+  }
+
+  if(collision && !this.wasHit){
+    this.wasHit = true
+    return true
+
+  }
+    if(!collision){
+      this.wasHit = false
+    }
+
+    return false
+
+ }
 }
 
 

@@ -91,7 +91,7 @@ function startGame(kind) {
         select("#page4").child(canvas)
         shiftPage("#page4")
         player = new Deer(width / 2, height - 40,70, null,'#ff6347')
-        player.hasHit = false
+       
         startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
             stopCountPoints()
@@ -238,7 +238,7 @@ function resetGames(){
 //}
 
 function runDeer(){
-      console.log("runDeer kører");
+    //  console.log("runDeer kører");
     baneY = height/2
    
    if (frameCount % 90 == 0) {
@@ -248,15 +248,23 @@ function runDeer(){
     biler.map(bil =>{
         bil.update()
         bil.show()
+    
+    
+        if(player.hit(bil)){
+        console.log("player was hit")
+        stopCountPoints
+        shiftPage("#page6")
+        }
     })
 
+    
 
     
 
 
 }
 
-function countHit(player,b){
+/*function countHit(player,b){
     var player = player.hit(b)
     if(h && !player.wasHit){
         hits++
@@ -265,7 +273,7 @@ function countHit(player,b){
         shiftPage("#page6")
     }
     player.wasHit = h
-}
+}*/
 
 
 //function keyPressed() {
