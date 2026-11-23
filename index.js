@@ -239,7 +239,7 @@ function resetGames(){
 
 function runDeer(){
     //  console.log("runDeer kører");
-    baneY = height/2
+    baneY = random(0,400);
    
    if (frameCount % 90 == 0) {
   biler.push(new Ball(0, baneY, 80, '#8b5e3c', null, 4, 0))
@@ -253,6 +253,7 @@ function runDeer(){
         if(player.hit(bil)){
         console.log("player was hit")
         stopCountPoints
+        
         shiftPage("#page6")
         }
     })
