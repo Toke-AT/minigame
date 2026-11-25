@@ -117,7 +117,7 @@ class Deer extends Ball{
 
 class JumpingBall extends Ball{
   constructor(x, y, r, img, jump, col, bounds){
-    super(x, y, r, img, col, 0, 0, bounds || [false, false, false, true])
+    super(x, y, r, img, col, 0, 0, bounds || [false, false, true, true])
     this.jumpForce = jump
   }
   update(){
@@ -127,6 +127,22 @@ class JumpingBall extends Ball{
   }
   jump(){
     this.velocity.y -= this.jumpForce
+  }
+}
+
+class PurpleCar extends Ball{
+  constructor(x, y, r, img, col, bounds){
+    super(x, y, r, img, col, 0, 0, bounds || [true, true, true, true])
+    
+  }
+  Step(dx, dy){
+    this.position.x +=dx
+
+    this.position.y +=dy
+    
+  }
+  show(){
+    super.show()
   }
 }
 
