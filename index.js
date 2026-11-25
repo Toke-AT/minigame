@@ -203,6 +203,20 @@ function keyPressed() {
 }
 
 
+/*function tuning() {
+    var table = {
+        let: { spawnRate: 74, speed: -2.4,},
+        middel: { spawnRate: 52, speed: -4.4,  },
+        svær: { spawnRate: 34, speed: -7.5,  }
+    }
+    var t = Object.assign({}, table[settings.difficulty] || table.middel)
+    var reach = Math.max(180, (windowHeight - 140) * t.part)
+    t.jump = Math.sqrt(2 * t.g * reach)
+    t.speed = t.speed * Math.max(1, windowWidth / 1100)
+    return t
+}*/
+
+
 // ============================================
 // HIGH SCORE (Firestore)
 // ============================================

@@ -179,10 +179,3 @@ function windowResized(){
     sizeCanvas()
 }
 
-/*Firebase.prototype.save = function(name, points) {
-  var data
-  if (typeof name === 'object') data = Object.assign({}, name)
-  else data = { name: name, points: points }
-  data.timestamp = firebase.firestore.FieldValue.serverTimestamp()
-  this.ref.add(data)
-}*/
