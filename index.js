@@ -61,7 +61,7 @@ function setup(){
     select("#deerBtn").mousePressed(() => startGame('deer game'))
     select("#midnightBtn").mousePressed(() => startGame('midnight game'))
     select("#settingsBtn").mousePressed(() => shiftPage('#page8'))
-    select("#GamesBtn").mousePressed(() => shiftPage('#page2'))
+    select("#gamesBtn").mousePressed(() => shiftPage('#page2'))
 
     select('#btn-save').mousePressed(() => {
         saveHighScore()
