@@ -17,6 +17,8 @@ var player
 var deer
 var car
 var motorists
+var dinosaur
+var monster
 
 
 
@@ -69,6 +71,9 @@ function preload(){
         () => console.log("Deer billede indlæst"),
         () => console.log("FEJL: Deer billede kunne ikke indlæses") )
         car = loadImage("./asset/cars.png")
+    
+    dinosaur = loadImage("./asset/dino.png",)
+    monster = loadImage("./asset/Monster_Ultra_Zero_1.png",)
 
 }
 
@@ -89,7 +94,7 @@ function startGame(kind) {
     if (kind == 'dino') {
         console.log("vil gerne skifte til 3")
         gravity = createVector(0, 0.5)
-        player = new Dino(120, height - 80, 70, null, 16, '#535353')
+        player = new Dino(120, height - 90, 70, dinosaur, 21, '#535353')
         select("#page3").child(canvas)
         shiftPage("#page3")
         var t = startTimer(20, 0, 'top-right', () => {
@@ -279,13 +284,13 @@ function runDeer(){
 
 }
 
-var dinoSpawnRate = 90
+var dinoSpawnRate = 50
 function runDino(){
     console.log("runDino kører");
    
    if (frameCount % dinoSpawnRate == 0) {
-    dinoSpawnRate = round((80,150))
-    kaktusser.push(new Ball(800, 775, 80, null, 'grey', -4, 0))
+    dinoSpawnRate = round(random(135,250))
+    kaktusser.push(new Ball(1500, 750, 120, monster, 'grey', -4, 0))
  
 }
     kaktusser.map(kaktus =>{
