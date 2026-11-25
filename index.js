@@ -15,6 +15,9 @@ var baneY
 var player
 var deer
 var car
+var motorists
+
+
 
 
 // Firestore reference
@@ -41,8 +44,8 @@ function stopCountPoints() {
 //P5 setup() bliver kaldt EN gang før siden vises 
 //jsbdjabkf
 var canvas
- function setup(){
-    alert("Setup bliver kørt")
+function setup(){
+    //alert("Setup bliver kørt")
     // loadHighScores()
     canvas = createCanvas(400, 400)     
      setTimeout(() => {
@@ -72,7 +75,7 @@ function preload(){
 function startGame(kind) {
     //readSettings()
     if (settings.name == '') {
-        showToast('Skriv et navn', 1800, 'warning')
+        //showToast('Skriv et navn', 1800, 'warning')
         //shiftPage('#indstillinger')
     }
     //var t = tuning()
@@ -113,7 +116,9 @@ function startGame(kind) {
     //clearInterval(t)
 
      if (kind == 'midnight game') {
+        select("#page5").child(canvas)
         shiftPage("#page5")
+        player = new PurpleCar(width / 2, height - 40,70, null,'#afdd')
         startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
             stopCountPoints()
@@ -129,6 +134,32 @@ function draw() {
    clear()
     //console.log("Game:", game);
     //console.log("Player:", player);
+
+    if (game == 'midnight game' && player) {
+        //runMidnight();    
+        player.show(); 
+        player.update()
+        player.constrain()
+
+        if(keyIsDown(LEFT_ARROW)){
+             player.Step(-5, 0.0)
+        }
+        if(keyIsDown(RIGHT_ARROW)){
+             player.Step(5, 0.0)
+        }
+        if(keyIsDown(UP_ARROW)){
+             player.Step(0.0, -5)
+        }
+        if(keyIsDown(DOWN_ARROW)){
+             player.Step(0.0, 5)
+        }
+        if(frameCount % 120 == 0){
+            //spawn car
+            var carY = random(0, height)
+        }
+        
+    
+    }
 
     if (game == 'deer game' && player) {
         runDeer();    
@@ -209,47 +240,11 @@ function resetGames(){
 
     shiftPage("#page2")
 }
-//class Firebase {
-//  constructor(MiniScores) {
-//    this.ref = db.collection('MiniScores')
-//  }
-//
-//  save(name, points) {
-//    this.ref.add({
-//      name: name,
-//      points: points,
-//      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-//    })
-//  }
-//
-//  listen(onUpdate, limit, sort, dir='desc') {
-//    var q = this.ref.orderBy(sort, dir)
-//    if(limit) q = q.limit(limit)
-//    return q.onSnapshot(snap => {
-//      var list = []
-//      snap.forEach(doc => {
-//        var d = doc.data()
-//        d.id = doc.id
-//        list.push(d)
-//      })
-//      onUpdate(list)
-//    })
-//  }
-//
-//  remove(id) {
-//    this.ref.doc(id).delete()
-//  }
-//
-//  clear() {
-//    this.ref.get().then(snap => {
-//      snap.forEach(doc => doc.ref.delete())
-//    })
-//  }
-//}
-
-//function stopGame(){
-
-//}
+function runMidnight(){
+    //moveSpeed 
+    //generate motorists
+    //map motorists and define what happens on hit
+}
 
 var spawnRate = 90
 function runDeer(){
