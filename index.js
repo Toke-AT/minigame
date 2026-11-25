@@ -11,9 +11,13 @@ var settings = {
     owned: ['#ff6347']
 }
 var biler = []
+var kaktusser = []
 var baneY
 var player
 var motorists = []
+var deer
+var car
+var motorists
 
 
 
@@ -58,6 +62,15 @@ function setup(){
     select('#btn-save').mousePressed(() => {
         saveHighScore()
     })
+
+    
+}
+function preload(){
+     deer = loadImage("./asset/deer.png",
+        () => console.log("Deer billede indlæst"),
+        () => console.log("FEJL: Deer billede kunne ikke indlæses") )
+        car = loadImage("./asset/cars.png")
+
 }
 
 
@@ -78,7 +91,6 @@ function startGame(kind) {
         console.log("vil gerne skifte til 3")
         gravity = createVector(0, 0.5)
         player = new Dino(120, height - 80, 70, null, 16, '#535353')
-        cactus = []
         select("#page3").child(canvas)
         shiftPage("#page3")
         var t = startTimer(20, 0, 'top-right', () => {
@@ -91,7 +103,7 @@ function startGame(kind) {
     if (kind == 'deer game') {
         select("#page4").child(canvas)
         shiftPage("#page4")
-        player = new Deer(width / 2, height - 40,70, "./asset/deer.png",'#ff6347')
+        player = new Deer(width / 2, height - 40,70, deer,'#ff6347')
        
         startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
@@ -167,12 +179,13 @@ function draw() {
     }
 
     if (game == 'dino' && player) {
-        background(240)
+        background(240)        
+        runDino();
         player.update()
         player.constrain()
         var onGround=player.position.y>=height-player.diam/2
         if(onGround) player.velocity.y=0
-        player.show()
+        player.show();
     }
    // if (game == 'skyd') runSkyd()
    // if (game == 'traek') runTraek()
@@ -257,7 +270,7 @@ function runDeer(){
    
    if (frameCount % spawnRate == 0) {
     spawnRate = round(random(80,150))
-  biler.push(new Ball(0, baneY, 80, '#8b5e3c', null, 4, 0))
+  biler.push(new Ball(0, baneY, 80, car, '#8b5e3c', 4, 0))
  
 }
     biler.map(bil =>{
@@ -267,7 +280,9 @@ function runDeer(){
     
         if(player.hit(bil)){
         console.log("player was hit")
-        stopCountPoints
+        stopTimer()
+        stopCountPoints()
+        
         
         shiftPage("#page6")
         }
@@ -278,6 +293,29 @@ function runDeer(){
     
 
 
+}
+
+var dinoSpawnRate = 90
+function runDino(){
+    console.log("runDino kører");
+   
+   if (frameCount % dinoSpawnRate == 0) {
+    dinoSpawnRate = round((80,150))
+    kaktusser.push(new Ball(800, 775, 80, null, 'grey', -4, 0))
+ 
+}
+    kaktusser.map(kaktus =>{
+        kaktus.update()
+        kaktus.show()
+    
+    
+        if(player.hit(kaktus)){
+        console.log("player was hit")
+        stopCountPoints
+        
+        shiftPage("#page6")
+        }
+    })
 }
 
 /*function countHit(player,b){
