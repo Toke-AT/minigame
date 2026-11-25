@@ -114,7 +114,7 @@ class Deer extends Ball{
 
 
 
-
+//Vi udvider jumpingball med en variabel der kan visse om vi lige nu står på¨jordsen 
 class JumpingBall extends Ball{
   constructor(x, y, r, img, jump, col, bounds){
     super(x, y, r, img, col, 0, 0, bounds || [false, false, false, true])
@@ -127,6 +127,23 @@ class JumpingBall extends Ball{
   }
   jump(){
     this.velocity.y -= this.jumpForce
+  }
+}
+
+class Dino extends JumpingBall{
+  constructor(x, y, r, img, jump, col, bounds){
+    super(x, y, r, img, jump, col, bounds || [false, false, false, true])
+    this.onGround = true
+
+  }
+  constrain(){
+    super.constrain()
+    if(this.position.y == height - this.diam / 2) {
+      this.onGround = true
+    }else{
+      this.onGround = false
+    } 
+    console.log(this.onGround, this.position.y, this.diam, height)
   }
 }
 

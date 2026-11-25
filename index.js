@@ -1,7 +1,7 @@
 
 var game
 var canvas
-
+var jump
 var settings = {
     name: '',
     sound: true,
@@ -76,7 +76,7 @@ function startGame(kind) {
     if (kind == 'dino') {
         console.log("vil gerne skifte til 3")
         gravity = createVector(0, 0.5)
-        player = new JumpingBall(120, height - 80, 70, null, 16, '#535353')
+        player = new Dino(120, height - 80, 70, null, 16, '#535353')
         cactus = []
         select("#page3").child(canvas)
         shiftPage("#page3")
@@ -114,12 +114,12 @@ function startGame(kind) {
 }
 
 function draw() {
-    console.log("draw kører");
+    //console.log("draw kører");
   //  if (currentPage != '#spil' || !player) return
    // background(back[game])
    clear()
-    console.log("Game:", game);
-    console.log("Player:", player);
+    //console.log("Game:", game);
+    //console.log("Player:", player);
 
     if (game == 'deer game' && player) {
         runDeer();    
@@ -153,6 +153,11 @@ function draw() {
    // if (game == 'traek') runTraek()
 }
 
+function keyPressed() {
+    if (currentPage == '#page3' && game == 'dino' && key == ' ') {
+        if(player.onGround) player.jump()  
+    }
+}
 
 
 // ============================================
@@ -283,10 +288,4 @@ function runDeer(){
 
 //}
 
-function keyPressed() {
-    if (currentPage == '#spil' && game == 'dino' && key == ' ') {
-        var onGround = player.position.y >= height - player.diam / 2
-        if(onGround) player.jump()  
-    }
-}
 
