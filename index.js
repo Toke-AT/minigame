@@ -14,6 +14,7 @@ var biler = []
 var kaktusser = []
 var baneY
 var player
+var motorists = []
 var deer
 var car
 var motorists
@@ -123,7 +124,7 @@ function startGame(kind) {
      if (kind == 'midnight game') {
         select("#page5").child(canvas)
         shiftPage("#page5")
-        player = new PurpleCar(width / 2, height - 40,70, null,'#afdd')
+        player = new PurpleCar(width / 2, height - 40,70, "./asset/MainCar.png",'#811181')
         startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
             stopCountPoints()
@@ -141,7 +142,7 @@ function draw() {
     //console.log("Player:", player);
 
     if (game == 'midnight game' && player) {
-        //runMidnight();    
+        runMidnight();    
         player.show(); 
         player.update()
         player.constrain()
@@ -157,10 +158,6 @@ function draw() {
         }
         if(keyIsDown(DOWN_ARROW)){
              player.Step(0.0, 5)
-        }
-        if(frameCount % 120 == 0){
-            //spawn car
-            var carY = random(0, height)
         }
         
     
@@ -250,6 +247,25 @@ function runMidnight(){
     //moveSpeed 
     //generate motorists
     //map motorists and define what happens on hit
+    laneY = random(0,windowHeight);
+   
+   if (frameCount % spawnRate == 0) {
+    spawnRate = round(random(80,150))
+  motorists.push(new Ball(1500, laneY, 80,"./asset/CarLeft.png", '#8b5e3c', -4, 0))
+ 
+}
+    motorists.map(motorist =>{
+        motorist.update()
+        motorist.show()
+    
+    
+        if(player.hit(motorist)){
+        console.log("player was hit")
+        stopCountPoints
+        
+        shiftPage("#page6")
+        }
+    })
 }
 
 var spawnRate = 90
