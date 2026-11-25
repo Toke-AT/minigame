@@ -178,3 +178,4 @@ function sizeCanvas(sidebar = '.sidebar'){
 function windowResized(){
     sizeCanvas()
 }
+
