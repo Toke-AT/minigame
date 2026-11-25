@@ -20,6 +20,7 @@ var car
 var motorists
 var dinosaur
 var monster
+var t
 
 
 
@@ -85,7 +86,7 @@ function startGame(kind) {
         //showToast('Skriv et navn', 1800, 'warning')
         //shiftPage('#indstillinger')
     }
-    //var t = tuning()
+    var t = tuning()
     game = kind
     score = 0
     //gravity = createVector(0, t.g)
@@ -203,18 +204,40 @@ function keyPressed() {
 }
 
 
-/*function tuning() {
+function tuning() {
     var table = {
-        let: { spawnRate: 74, speed: -2.4,},
-        middel: { spawnRate: 52, speed: -4.4,  },
-        svær: { spawnRate: 34, speed: -7.5,  }
+        let: { xSpeed: -2,},
+        middel: {  xSpeed: -4,  },
+        svær: {  xSpeed: -7,  }
     }
-    var t = Object.assign({}, table[settings.difficulty] || table.middel)
-    var reach = Math.max(180, (windowHeight - 140) * t.part)
-    t.jump = Math.sqrt(2 * t.g * reach)
-    t.speed = t.speed * Math.max(1, windowWidth / 1100)
+     t = Object.assign({}, table[settings.difficulty] || table.middel)
+    //var reach = Math.max(180, (windowHeight - 140) * t.part)
+    t.xSpeed = t.xSpeed * Math.max(1, windowWidth / 1100)
     return t
-}*/
+}
+
+function readSettings() {
+    var name = txt('#set-name').trim()
+    settings.name = name
+    settings.sound = select('#set-sound').elt.checked
+    settings.difficulty = select('#set-diff').value()
+    saveLocal()
+}
+
+function saveLocal() {
+    localStorage.setItem('spilcentral', JSON.stringify(settings))
+}
+function fillForm() {
+    select('#set-name').value(settings.name)
+    select('#set-sound').elt.checked = settings.sound
+    select('#set-diff').value(settings.difficulty)
+    paintLook()
+}
+
+function paintLook() {
+    select('#coins-front').html(settings.coins + ' mønter')
+    select('#swatch').style('background', settings.color)
+}
 
 
 // ============================================
@@ -289,7 +312,7 @@ function runDeer(){
    
    if (frameCount % spawnRate == 0) {
     spawnRate = round(random(80,150))
-  biler.push(new Ball(0, baneY, 80, car, '#8b5e3c', 4, 0))
+  biler.push(new Ball(1500, baneY, 80, car, '#8b5e3c', t.xSpeed, 0))
  
 }
     biler.map(bil =>{
@@ -318,7 +341,7 @@ function runDino(){
    
    if (frameCount % dinoSpawnRate == 0) {
     dinoSpawnRate = round(random(135,250))
-    kaktusser.push(new Ball(1500, 750, 120, monster, 'grey', -4, 0))
+    kaktusser.push(new Ball(1500, 750, 120, monster, 'grey', t.xSpeed, 0))
  
 }
     kaktusser.map(kaktus =>{
