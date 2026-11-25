@@ -17,7 +17,9 @@ var player
 var motorists = []
 var deer
 var car
-var motorists
+var moveSpeed = 0
+
+
 
 
 
@@ -70,6 +72,8 @@ function preload(){
         () => console.log("Deer billede indlæst"),
         () => console.log("FEJL: Deer billede kunne ikke indlæses") )
         car = loadImage("./asset/cars.png")
+        motorist = loadImage("./asset/CarLeft.png")
+        MainCar = loadImage("./asset/MainCar.png")
 
 }
 
@@ -119,10 +123,13 @@ function startGame(kind) {
      if (kind == 'midnight game') {
         select("#page5").child(canvas)
         shiftPage("#page5")
-        player = new PurpleCar(width / 2, height - 40,70, "./asset/MainCar.png",'#811181')
+        player = new PurpleCar(width / 2, height - 40,70, MainCar,'#811181')
         startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
             stopCountPoints()
+            points = moveSpeed
+            //showToast(moveSpeed)
+            console.log(points)
             shiftPage("#page6")
         }, null)
     }
@@ -141,6 +148,7 @@ function draw() {
         player.show(); 
         player.update()
         player.constrain()
+
 
         if(keyIsDown(LEFT_ARROW)){
              player.Step(-5, 0.0)
@@ -240,15 +248,21 @@ function resetGames(){
 }
 function runMidnight(){
     //moveSpeed 
+    if (currentPage == '#page5' && game == 'midnight game'){
+
+        moveSpeed = Math.log10(frameCount) * 12
+        console.log('moveSpeed increased', round(moveSpeed))
+        frameRate(round(moveSpeed))
+    }
     //generate motorists
     //map motorists and define what happens on hit
     laneY = random(0,windowHeight);
    
    if (frameCount % spawnRate == 0) {
     spawnRate = round(random(80,150))
-  motorists.push(new Ball(1500, laneY, 80,"./asset/CarLeft.png", '#8b5e3c', -4, 0))
+  motorists.push(new Ball(1500, laneY, 80, motorist, '#8b5e3c', -moveSpeed, 0))
  
-}
+ }
     motorists.map(motorist =>{
         motorist.update()
         motorist.show()
@@ -257,7 +271,8 @@ function runMidnight(){
         if(player.hit(motorist)){
         console.log("player was hit")
         stopCountPoints
-        
+        points = moveSpeed
+        console.log(points)
         shiftPage("#page6")
         }
     })

@@ -74,7 +74,18 @@ body,
 
 #page5{
     background-color: black;
-    
+    background-image: url('./asset/Road.png');
+    background-position: center;
+    animation: mist 3.5s infinite linear;
+}
+
+@keyframes mist {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -300vw 0;
+  }
 }
 
 #page6{

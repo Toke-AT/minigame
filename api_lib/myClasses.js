@@ -30,8 +30,8 @@ class Ball {
   show(){
       //console.log("Billede skal være her", this.img)
     if(this.img){
-         console.log("IMG:", this.img)
-        console.log("TYPE:", typeof this.img)
+         //console.log("IMG:", this.img)
+        //console.log("TYPE:", typeof this.img)
       imageMode(CENTER)
       image(this.img, this.position.x, this.position.y, this.diam, this.diam)
     }else if(this.col){
@@ -146,7 +146,7 @@ class JumpingBall extends Ball{
 class PurpleCar extends Ball{
   constructor(x, y, r, img, col, bounds){
     super(x, y, r, img, col, 0, 0, bounds || [true, true, true, true])
-    this.img = loadImage("./asset/MainCar.png")
+
   }
   Step(dx, dy){
     this.position.x +=dx
