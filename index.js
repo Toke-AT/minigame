@@ -90,7 +90,7 @@ function startGame(kind) {
     if (kind == 'deer game') {
         select("#page4").child(canvas)
         shiftPage("#page4")
-        player = new Deer(width / 2, height - 40,70, null,'#ff6347')
+        player = new Deer(width / 2, height - 40,70, "./asset/deer.png",'#ff6347')
        
         startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
@@ -114,12 +114,12 @@ function startGame(kind) {
 }
 
 function draw() {
-    console.log("draw kører");
+   // console.log("draw kører");
   //  if (currentPage != '#spil' || !player) return
    // background(back[game])
    clear()
-    console.log("Game:", game);
-    console.log("Player:", player);
+  //  console.log("Game:", game);
+    //console.log("Player:", player);
 
     if (game == 'deer game' && player) {
         runDeer();    
@@ -237,11 +237,13 @@ function resetGames(){
 
 //}
 
+var spawnRate = 90
 function runDeer(){
     //  console.log("runDeer kører");
-    baneY = random(0,400);
+    baneY = random(0,windowHeight);
    
-   if (frameCount % 90 == 0) {
+   if (frameCount % spawnRate == 0) {
+    spawnRate = round(random(80,150))
   biler.push(new Ball(0, baneY, 80, '#8b5e3c', null, 4, 0))
  
 }

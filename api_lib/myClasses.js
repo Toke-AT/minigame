@@ -1,3 +1,5 @@
+
+
 class Ball {
   constructor(x, y, r, img, col, xSpeed, ySpeed, bounds){ 
     this.diam = r
@@ -5,16 +7,15 @@ class Ball {
     this.position = createVector(x, y)
     this.img = null
     this.col = null
-    if(typeof img === 'string'){
-      this.col = img
-    } else if(img){
-      this.img = img
-    }
+    this.img = img
+    
     if(col) this.col = col
     this.bounds = bounds || [false, false, false, false]
     this.mass = this.diam
     this.fixed = false
   }
+
+  
 
 
 
@@ -22,6 +23,7 @@ class Ball {
     this.position.add(this.velocity)
   }
   show(){
+      console.log("Billede skal være her", this.img)
     if(this.img){
       imageMode(CENTER)
       image(this.img, this.position.x, this.position.y, this.diam, this.diam)
@@ -99,9 +101,13 @@ class Ball {
   }
 }
 
+
 class Deer extends Ball{
   constructor(x, y, r, img, col, ){
     super(x,y,r, img, col, 0,0, )
+    console.log("Billede skal være her", img) 
+
+   //this.img = loadImage("./asset/deer.png")
     
   }
   Step(dx, dy){
@@ -111,8 +117,6 @@ class Deer extends Ball{
     
   }
 }
-
-
 
 
 class JumpingBall extends Ball{
