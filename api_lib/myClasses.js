@@ -1,3 +1,5 @@
+
+
 class Ball {
   constructor(x, y, r, img, col, xSpeed, ySpeed, bounds){ 
     this.diam = r
@@ -16,12 +18,15 @@ class Ball {
     this.fixed = false
   }
 
+  
+
 
 
   update(){
     this.position.add(this.velocity)
   }
   show(){
+      console.log("Billede skal være her", this.img)
     if(this.img){
       imageMode(CENTER)
       image(this.img, this.position.x, this.position.y, this.diam, this.diam)
@@ -99,9 +104,13 @@ class Ball {
   }
 }
 
+
 class Deer extends Ball{
   constructor(x, y, r, img, col, ){
     super(x,y,r, img, col, 0,0, )
+    console.log("Billede skal være her", img) 
+
+   //this.img = loadImage("./asset/deer.png")
     
   }
   Step(dx, dy){
@@ -114,7 +123,7 @@ class Deer extends Ball{
 
 
 
-
+//Vi udvider jumpingball med en variabel der kan visse om vi lige nu står på¨jordsen 
 class JumpingBall extends Ball{
   constructor(x, y, r, img, jump, col, bounds){
     super(x, y, r, img, col, 0, 0, bounds || [false, false, true, true])
@@ -143,6 +152,23 @@ class PurpleCar extends Ball{
   }
   show(){
     super.show()
+  }
+}
+
+class Dino extends JumpingBall{
+  constructor(x, y, r, img, jump, col, bounds){
+    super(x, y, r, img, jump, col, bounds || [false, false, false, true])
+    this.onGround = true
+
+  }
+  constrain(){
+    super.constrain()
+    if(this.position.y == height - this.diam / 2) {
+      this.onGround = true
+    }else{
+      this.onGround = false
+    } 
+    console.log(this.onGround, this.position.y, this.diam, height)
   }
 }
 
