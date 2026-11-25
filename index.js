@@ -20,7 +20,11 @@ var car
 var moveSpeed = 0
 
 
-
+var dinosaur
+var monster
+var t
+var s
+var e
 
 
 
@@ -53,27 +57,36 @@ function setup(){
     // loadHighScores()
     canvas = createCanvas(400, 400)     
      setTimeout(() => {
-        shiftPage("#page2")
+        shiftPage("#page7")
     }, 1000)
    
 
     select("#dinoBtn").mousePressed(() => startGame('dino'))
     select("#deerBtn").mousePressed(() => startGame('deer game'))
     select("#midnightBtn").mousePressed(() => startGame('midnight game'))
+    select("#settingsBtn").mousePressed(() => shiftPage('#page8'))
+    select("#gamesBtn").mousePressed(() => shiftPage('#page2'))
 
     select('#btn-save').mousePressed(() => {
         saveHighScore()
+    })
+    
+    select('#set-save').mousePressed(function() {
+        readSettings()
+        showToast('Indstillinger gemt')
+        shiftPage('#page2')
     })
 
     
 }
 function preload(){
-     deer = loadImage("./asset/deer.png",
-        () => console.log("Deer billede indlæst"),
-        () => console.log("FEJL: Deer billede kunne ikke indlæses") )
+     deer = loadImage("./asset/deer 2.png" )
         car = loadImage("./asset/cars.png")
-        motorist = loadImage("./asset/CarLeft.png")
-        MainCar = loadImage("./asset/MainCar.png")
+    
+    dinosaur = loadImage("./asset/dino.png",)
+    monster = loadImage("./asset/Monster_Ultra_Zero_1.png",)
+    motorist = loadImage("./asset/CarLeft.png")
+    MainCar = loadImage("./asset/MainCar.png")
 
 }
 
@@ -84,7 +97,8 @@ function startGame(kind) {
         //showToast('Skriv et navn', 1800, 'warning')
         //shiftPage('#indstillinger')
     }
-    //var t = tuning()
+    var t = tuning()
+    var s = tuningS()
     game = kind
     score = 0
     //gravity = createVector(0, t.g)
@@ -94,7 +108,7 @@ function startGame(kind) {
     if (kind == 'dino') {
         console.log("vil gerne skifte til 3")
         gravity = createVector(0, 0.5)
-        player = new Dino(120, height - 80, 70, null, 16, '#535353')
+        player = new Dino(120, height - 90, 70, dinosaur, 21, '#535353')
         select("#page3").child(canvas)
         shiftPage("#page3")
         var t = startTimer(20, 0, 'top-right', () => {
@@ -206,6 +220,56 @@ function keyPressed() {
 }
 
 
+
+function tuning() {
+    var table = {
+        let: { xSpeed: -2,},
+        middel: {  xSpeed: -4,  },
+        svær: {  xSpeed: -7,  }
+    }
+     t = Object.assign({}, table[settings.difficulty] || table.middel)
+    //var reach = Math.max(180, (windowHeight - 140) * t.part)
+    t.xSpeed = t.xSpeed * Math.max(1, windowWidth / 1100)
+    return t
+}
+
+function tuningS() {
+    var table = {
+        let: { teleport: 10.50},
+        middel: {  teleport: -4,  },
+        svær: {  teleport: -7,  }
+    }
+     s = Object.assign({}, table[settings.difficulty] || table.middel)
+    //var reach = Math.max(180, (windowHeight - 140) * t.part)
+    s.teleport = s.teleport * Math.max(1, windowWidth / 1100)
+    return s
+}
+
+
+function readSettings() {
+    var name = txt('#set-name').trim()
+    settings.name = name
+    settings.sound = select('#set-sound').elt.checked
+    settings.difficulty = select('#set-diff').value()
+    saveLocal()
+}
+
+function saveLocal() {
+    localStorage.setItem('spilcentral', JSON.stringify(settings))
+}
+function fillForm() {
+    select('#set-name').value(settings.name)
+    select('#set-sound').elt.checked = settings.sound
+    select('#set-diff').value(settings.difficulty)
+    paintLook()
+}
+
+function paintLook() {
+    select('#coins-front').html(settings.coins + ' mønter')
+    select('#swatch').style('background', settings.color)
+}
+
+
 // ============================================
 // HIGH SCORE (Firestore)
 // ============================================
@@ -285,7 +349,7 @@ function runDeer(){
    
    if (frameCount % spawnRate == 0) {
     spawnRate = round(random(80,150))
-  biler.push(new Ball(0, baneY, 80, car, '#8b5e3c', 4, 0))
+  biler.push(new Ball(1500, baneY, 80, car, '#8b5e3c', t.xSpeed, 0))
  
 }
     biler.map(bil =>{
@@ -306,17 +370,15 @@ function runDeer(){
     
 
     
-
-
 }
 
-var dinoSpawnRate = 90
+var dinoSpawnRate = 50
 function runDino(){
-    console.log("runDino kører");
+    //console.log("runDino kører");
    
    if (frameCount % dinoSpawnRate == 0) {
-    dinoSpawnRate = round((80,150))
-    kaktusser.push(new Ball(800, 775, 80, null, 'grey', -4, 0))
+    dinoSpawnRate = round(random(135,250))
+    kaktusser.push(new Ball(1500, 750, 120, monster, 'grey', t.xSpeed-4, 0))
  
 }
     kaktusser.map(kaktus =>{

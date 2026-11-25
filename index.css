@@ -47,6 +47,13 @@ body,
     background-position: center;
     grid-template-columns: repeat(3, 1fr);
 }
+#page7{
+    background-size: contain;
+    background-size: 100%, 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-template-columns: repeat(2, 1fr);
+}
 
 #dinoBtn{
     background-color:aliceblue;
@@ -61,6 +68,16 @@ body,
 #midnightBtn{
     background-color:aliceblue;
     box-shadow: 5px 5px 5px 3px rgba(138, 43, 226, 1);
+}
+
+#settingsBtn{
+    background-color:aliceblue;
+    box-shadow: 5px 5px 5px 3px rgb(0, 0, 0);
+}
+
+#gamesBtn{
+    background-color:aliceblue;
+    box-shadow: 5px 5px 5px 3px rgb(0, 0, 0);
 }
 
 #page3{
