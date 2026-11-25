@@ -11,6 +11,7 @@ var settings = {
     owned: ['#ff6347']
 }
 var biler = []
+var kaktusser = []
 var baneY
 var player
 
@@ -77,7 +78,6 @@ function startGame(kind) {
         console.log("vil gerne skifte til 3")
         gravity = createVector(0, 0.5)
         player = new Dino(120, height - 80, 70, null, 16, '#535353')
-        cactus = []
         select("#page3").child(canvas)
         shiftPage("#page3")
         var t = startTimer(20, 0, 'top-right', () => {
@@ -142,12 +142,13 @@ function draw() {
     }
 
     if (game == 'dino' && player) {
-        background(240)
+        background(240)        
+        runDino();
         player.update()
         player.constrain()
         var onGround=player.position.y>=height-player.diam/2
         if(onGround) player.velocity.y=0
-        player.show()
+        player.show();
     }
    // if (game == 'skyd') runSkyd()
    // if (game == 'traek') runTraek()
@@ -270,6 +271,29 @@ function runDeer(){
     
 
 
+}
+
+var dinoSpawnRate = 90
+function runDino(){
+    console.log("runDino kører");
+   
+   if (frameCount % dinoSpawnRate == 0) {
+    dinoSpawnRate = round((80,150))
+    kaktusser.push(new Ball(800, 775, 80, null, 'grey', -4, 0))
+ 
+}
+    kaktusser.map(kaktus =>{
+        kaktus.update()
+        kaktus.show()
+    
+    
+        if(player.hit(kaktus)){
+        console.log("player was hit")
+        stopCountPoints
+        
+        shiftPage("#page6")
+        }
+    })
 }
 
 /*function countHit(player,b){
