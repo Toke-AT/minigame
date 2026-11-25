@@ -64,7 +64,7 @@ function setup(){
     
 }
 function preload(){
-     deer = loadImage("./asset/deer.png",
+     deer = loadImage("./asset/deer 2.png",
         () => console.log("Deer billede indlæst"),
         () => console.log("FEJL: Deer billede kunne ikke indlæses") )
         car = loadImage("./asset/cars.png")
@@ -274,9 +274,21 @@ function runDeer(){
     
 
     
-
-
 }
+
+
+/*function tuning() {
+    var table = {
+        let: { size: 74, speed: 2.4, seconds: 25, part: 0.72, drag: 200, bullet: 16, g: 0.55 },
+        middel: { size: 52, speed: 3.6, seconds: 20, part: 0.5, drag: 140, bullet: 12, g: 0.62 },
+        svær: { size: 34, speed: 5.2, seconds: 15, part: 0.32, drag: 90, bullet: 9, g: 0.72 }
+    }
+    var t = Object.assign({}, table[settings.difficulty] || table.middel)
+    var reach = Math.max(180, (windowHeight - 140) * t.part)
+    t.jump = Math.sqrt(2 * t.g * reach)
+    t.speed = t.speed * Math.max(1, windowWidth / 1100)
+    return t
+}*/
 
 /*function countHit(player,b){
     var player = player.hit(b)
