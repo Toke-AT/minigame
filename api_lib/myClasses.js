@@ -8,6 +8,11 @@ class Ball {
     this.img = null
     this.col = null
     this.img = img
+        if(typeof img === 'string'){
+      this.col = img
+    } else if(img){
+      this.img = img
+    }
     
     if(col) this.col = col
     this.bounds = bounds || [false, false, false, false]
@@ -25,6 +30,8 @@ class Ball {
   show(){
       console.log("Billede skal være her", this.img)
     if(this.img){
+         console.log("IMG:", this.img)
+        console.log("TYPE:", typeof this.img)
       imageMode(CENTER)
       image(this.img, this.position.x, this.position.y, this.diam, this.diam)
     }else if(this.col){
@@ -123,7 +130,7 @@ class Deer extends Ball{
 //Vi udvider jumpingball med en variabel der kan visse om vi lige nu står på¨jordsen 
 class JumpingBall extends Ball{
   constructor(x, y, r, img, jump, col, bounds){
-    super(x, y, r, img, col, 0, 0, bounds || [false, false, false, true])
+    super(x, y, r, img, col, 0, 0, bounds || [false, false, true, true])
     this.jumpForce = jump
   }
   update(){
@@ -133,6 +140,22 @@ class JumpingBall extends Ball{
   }
   jump(){
     this.velocity.y -= this.jumpForce
+  }
+}
+
+class PurpleCar extends Ball{
+  constructor(x, y, r, img, col, bounds){
+    super(x, y, r, img, col, 0, 0, bounds || [true, true, true, true])
+    
+  }
+  Step(dx, dy){
+    this.position.x +=dx
+
+    this.position.y +=dy
+    
+  }
+  show(){
+    super.show()
   }
 }
 
