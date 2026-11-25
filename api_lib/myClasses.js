@@ -8,6 +8,11 @@ class Ball {
     this.img = null
     this.col = null
     this.img = img
+        if(typeof img === 'string'){
+      this.col = img
+    } else if(img){
+      this.img = img
+    }
     
     if(col) this.col = col
     this.bounds = bounds || [false, false, false, false]
@@ -25,6 +30,8 @@ class Ball {
   show(){
       console.log("Billede skal være her", this.img)
     if(this.img){
+         console.log("IMG:", this.img)
+        console.log("TYPE:", typeof this.img)
       imageMode(CENTER)
       image(this.img, this.position.x, this.position.y, this.diam, this.diam)
     }else if(this.col){

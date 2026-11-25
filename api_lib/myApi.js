@@ -94,6 +94,7 @@ function createCard(title = "", text = "", image = "", callback){
 //corner: top-left, top-right, bottom-left eller bottom-right
 //callback: kaldes når timeren rammer to
 //bg: valgfrit baggrundsbillede bag tiden
+var timerInterval = null
 function startTimer(from, to, corner = 'top-right', callback, bg) {
     selectAll('.timer').map(el => el.remove())
     var timer = createDiv(from)
@@ -105,18 +106,27 @@ function startTimer(from, to, corner = 'top-right', callback, bg) {
     var step = from < to ? 1 : -1
     var now = from
 
-    var tick = setInterval(() => {
+    timerInterval = setInterval(() => {
         now += step
         timer.html(now)
 
         // Er vi i mål?
         if (now === to) {
-            clearInterval(tick)
+            clearInterval(timerInterval)
+            timerInterval = null
             callback(now)
         }
     }, 1000)
 
     return timer
+}
+
+function stopTimer(){
+      if (timerInterval !== null) {
+        clearInterval(timerInterval)
+        timerInterval = null
+    }
+
 }
 
 //id: CSS-selektor til et input, fx '#ball-x'
