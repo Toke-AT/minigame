@@ -54,13 +54,15 @@ function setup(){
     // loadHighScores()
     canvas = createCanvas(400, 400)     
      setTimeout(() => {
-        shiftPage("#page2")
+        shiftPage("#page7")
     }, 1000)
    
 
     select("#dinoBtn").mousePressed(() => startGame('dino'))
     select("#deerBtn").mousePressed(() => startGame('deer game'))
     select("#midnightBtn").mousePressed(() => startGame('midnight game'))
+    select("#settingsBtn").mousePressed(() => shiftPage('#page8'))
+    select("#gamesBtn").mousePressed(() => shiftPage('#page2'))
 
     select('#btn-save').mousePressed(() => {
         saveHighScore()
