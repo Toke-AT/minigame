@@ -71,7 +71,26 @@
         </div>
 
         <div class="page" id="page8" title="settings">
-            <h1>Settings</h1>
+            <div class="panel">
+                <h1>Indstillinger</h1>
+                <label>Navn
+                    <input id="set-name" type="text" value="Spiller">
+                </label>
+                <label class="check">
+                    <input id="set-sound" type="checkbox" checked> Lyd
+                </label>
+                <label>Sværhedsgrad
+                    <select id="set-diff">
+                        <option value="let">Let</option>
+                        <option value="middel" selected>Middel</option>
+                        <option value="svær">Svær</option>
+                    </select>
+                </label>
+                <div class="row">
+                    <button id="set-save">Gem</button>
+                    <button id="set-back">Tilbage</button>
+                </div>
+            </div>
         </div>
 
 

@@ -30,8 +30,8 @@ class Ball {
   show(){
       //console.log("Billede skal være her", this.img)
     if(this.img){
-         console.log("IMG:", this.img)
-        console.log("TYPE:", typeof this.img)
+        // console.log("IMG:", this.img)
+        //console.log("TYPE:", typeof this.img)
       imageMode(CENTER)
       image(this.img, this.position.x, this.position.y, this.diam, this.diam)
     }else if(this.col){
@@ -112,7 +112,7 @@ class Ball {
 class Deer extends Ball{
   constructor(x, y, r, img, col, ){
     super(x,y,r, img, col, 0,0, )
-    console.log("Billede skal være her", img) 
+   // console.log("Billede skal være her", img) 
 
    //this.img = loadImage("./asset/deer.png")
     
@@ -172,7 +172,7 @@ class Dino extends JumpingBall{
     }else{
       this.onGround = false
     } 
-    console.log(this.onGround, this.position.y, this.diam, height)
+    //console.log(this.onGround, this.position.y, this.diam, height)
   }
 }
 

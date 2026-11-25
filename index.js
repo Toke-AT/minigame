@@ -21,7 +21,8 @@ var motorists
 var dinosaur
 var monster
 var t
-
+var s
+var e
 
 
 
@@ -67,13 +68,17 @@ function setup(){
     select('#btn-save').mousePressed(() => {
         saveHighScore()
     })
+    
+    select('#set-save').mousePressed(function() {
+        readSettings()
+        showToast('Indstillinger gemt')
+        shiftPage('#page2')
+    })
 
     
 }
 function preload(){
-     deer = loadImage("./asset/deer 2.png",
-        () => console.log("Deer billede indlæst"),
-        () => console.log("FEJL: Deer billede kunne ikke indlæses") )
+     deer = loadImage("./asset/deer 2.png" )
         car = loadImage("./asset/cars.png")
     
     dinosaur = loadImage("./asset/dino.png",)
@@ -89,6 +94,7 @@ function startGame(kind) {
         //shiftPage('#indstillinger')
     }
     var t = tuning()
+    var s = tuningS()
     game = kind
     score = 0
     //gravity = createVector(0, t.g)
@@ -206,6 +212,7 @@ function keyPressed() {
 }
 
 
+
 function tuning() {
     var table = {
         let: { xSpeed: -2,},
@@ -217,6 +224,19 @@ function tuning() {
     t.xSpeed = t.xSpeed * Math.max(1, windowWidth / 1100)
     return t
 }
+
+function tuningS() {
+    var table = {
+        let: { teleport: 10.50},
+        middel: {  teleport: -4,  },
+        svær: {  teleport: -7,  }
+    }
+     s = Object.assign({}, table[settings.difficulty] || table.middel)
+    //var reach = Math.max(180, (windowHeight - 140) * t.part)
+    s.teleport = s.teleport * Math.max(1, windowWidth / 1100)
+    return s
+}
+
 
 function readSettings() {
     var name = txt('#set-name').trim()
@@ -339,11 +359,11 @@ function runDeer(){
 
 var dinoSpawnRate = 50
 function runDino(){
-    console.log("runDino kører");
+    //console.log("runDino kører");
    
    if (frameCount % dinoSpawnRate == 0) {
     dinoSpawnRate = round(random(135,250))
-    kaktusser.push(new Ball(1500, 750, 120, monster, 'grey', t.xSpeed, 0))
+    kaktusser.push(new Ball(1500, 750, 120, monster, 'grey', t.xSpeed-4, 0))
  
 }
     kaktusser.map(kaktus =>{
