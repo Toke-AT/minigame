@@ -11,8 +11,10 @@ var settings = {
     owned: ['#ff6347']
 }
 var biler = []
+var kaktusser = []
 var baneY
 var player
+var motorists = []
 var deer
 var car
 var motorists
@@ -89,7 +91,6 @@ function startGame(kind) {
         console.log("vil gerne skifte til 3")
         gravity = createVector(0, 0.5)
         player = new Dino(120, height - 80, 70, null, 16, '#535353')
-        cactus = []
         select("#page3").child(canvas)
         shiftPage("#page3")
         var t = startTimer(20, 0, 'top-right', () => {
@@ -118,7 +119,7 @@ function startGame(kind) {
      if (kind == 'midnight game') {
         select("#page5").child(canvas)
         shiftPage("#page5")
-        player = new PurpleCar(width / 2, height - 40,70, null,'#afdd')
+        player = new PurpleCar(width / 2, height - 40,70, "./asset/MainCar.png",'#811181')
         startCountPoints()
         var t = startTimer(20, 0, 'top-right', () => {
             stopCountPoints()
@@ -136,7 +137,7 @@ function draw() {
     //console.log("Player:", player);
 
     if (game == 'midnight game' && player) {
-        //runMidnight();    
+        runMidnight();    
         player.show(); 
         player.update()
         player.constrain()
@@ -152,10 +153,6 @@ function draw() {
         }
         if(keyIsDown(DOWN_ARROW)){
              player.Step(0.0, 5)
-        }
-        if(frameCount % 120 == 0){
-            //spawn car
-            var carY = random(0, height)
         }
         
     
@@ -182,12 +179,13 @@ function draw() {
     }
 
     if (game == 'dino' && player) {
-        background(240)
+        background(240)        
+        runDino();
         player.update()
         player.constrain()
         var onGround=player.position.y>=height-player.diam/2
         if(onGround) player.velocity.y=0
-        player.show()
+        player.show();
     }
    // if (game == 'skyd') runSkyd()
    // if (game == 'traek') runTraek()
@@ -244,6 +242,25 @@ function runMidnight(){
     //moveSpeed 
     //generate motorists
     //map motorists and define what happens on hit
+    laneY = random(0,windowHeight);
+   
+   if (frameCount % spawnRate == 0) {
+    spawnRate = round(random(80,150))
+  motorists.push(new Ball(1500, laneY, 80,"./asset/CarLeft.png", '#8b5e3c', -4, 0))
+ 
+}
+    motorists.map(motorist =>{
+        motorist.update()
+        motorist.show()
+    
+    
+        if(player.hit(motorist)){
+        console.log("player was hit")
+        stopCountPoints
+        
+        shiftPage("#page6")
+        }
+    })
 }
 
 var spawnRate = 90
@@ -276,19 +293,28 @@ function runDeer(){
     
 }
 
-
-/*function tuning() {
-    var table = {
-        let: { size: 74, speed: 2.4, seconds: 25, part: 0.72, drag: 200, bullet: 16, g: 0.55 },
-        middel: { size: 52, speed: 3.6, seconds: 20, part: 0.5, drag: 140, bullet: 12, g: 0.62 },
-        svær: { size: 34, speed: 5.2, seconds: 15, part: 0.32, drag: 90, bullet: 9, g: 0.72 }
-    }
-    var t = Object.assign({}, table[settings.difficulty] || table.middel)
-    var reach = Math.max(180, (windowHeight - 140) * t.part)
-    t.jump = Math.sqrt(2 * t.g * reach)
-    t.speed = t.speed * Math.max(1, windowWidth / 1100)
-    return t
-}*/
+var dinoSpawnRate = 90
+function runDino(){
+    console.log("runDino kører");
+   
+   if (frameCount % dinoSpawnRate == 0) {
+    dinoSpawnRate = round((80,150))
+    kaktusser.push(new Ball(800, 775, 80, null, 'grey', -4, 0))
+ 
+}
+    kaktusser.map(kaktus =>{
+        kaktus.update()
+        kaktus.show()
+    
+    
+        if(player.hit(kaktus)){
+        console.log("player was hit")
+        stopCountPoints
+        
+        shiftPage("#page6")
+        }
+    })
+}
 
 /*function countHit(player,b){
     var player = player.hit(b)
